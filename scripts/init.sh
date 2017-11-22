@@ -1,7 +1,7 @@
 #!/bin/bash
 # Initialise container
 
-source config-release.sh
+source /build/config-release.sh
 
 # Make sure we are in /build
 if [ ! -d "$DIRECTORY/cache" ]; then

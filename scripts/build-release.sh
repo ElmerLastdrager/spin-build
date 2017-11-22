@@ -38,7 +38,6 @@ fi
 # Compile lede
 $DIRECTORY/scripts/lede-build-release.sh
 
-# Fix output??? FIXME
 mkdir -p $OUTPUT/sidn
 $ENV python2.7 $DIRECTORY/scripts/lede-sidn-create_release.py -v $VERSION \
     $LEDEDIR/VALIBOX_CHANGELOG.txt $OUTPUT/sidn

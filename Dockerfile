@@ -23,13 +23,13 @@ RUN apt-get update && apt-get install -y \
 ADD . /build/
 
 RUN useradd -ms /bin/bash dev &&\
-    /build/init.sh
+    /build/scripts/init.sh
 
 USER dev
 
 # Build SPIN
 # TODO REMOVE
-CMD ["/bin/bash"]
+CMD ["/bin/scripts/build-release.sh"]
 
 # Use ENTRYPOINT to allow dynamic commands to run
 # Default: build all

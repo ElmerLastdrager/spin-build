@@ -5,6 +5,21 @@ software.
 
 Clone this repository and run the make-release.sh scripts using bash.
 
+## Usage
+
+The easiest method to start compiling SPIN is to run:
+> ./make-release.sh
+
+This does not use caching by default. If you do
+want to compile several times and have some disk space to spare (8-10GB), use
+> ./make-release.sh cache
+
+If you want to remove the cached volumes, you can run
+> ./make-release.sh clean
+
+The output images will be put in a bin/ subdirectory of the current working
+ directory.
+
 <!-- ## Contents
 
 **scripts/**
