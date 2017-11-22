@@ -1,27 +1,31 @@
 # SPIN build scripts
 
-This repository contains the build scripts to build and publish the SPIN software.
+This repository contains the build scripts to build and publish the SPIN
+software.
 
+Clone this repository and run the make-release.sh scripts using bash.
 
-**scripts/**  
-    build scripts for lede, spin, etc  
-    main entrance script for docker cmd  
+<!-- ## Contents
+
+**scripts/**
+    build scripts for lede, spin, etc
+    main entrance script for docker cmd
 
 **Dockerfile**
-    
-**README**  
-    Write command examples
+
+ **README**
+    Write command examples -->
 
 <!-- **make-beta.sh**
    Script that builds all beta binaries in `bin/beta/` directory.
    Runs docker with specific bin/ bind mount. -->
 
-**make-release.sh**  
-   Script that builds all release binaries in `bin/` directory.  
-   Runs docker with specific bin/ bind mount.  
+<!-- **make-release.sh**
+   Script that builds all release binaries in `bin/` directory.
+   Runs docker with specific bin/ bind mount.  -->
 
-**.gitignore**  
-    bin/
+<!-- **.gitignore**
+    bin/ -->
 
 <!-- # Manual
 
