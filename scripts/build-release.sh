@@ -7,7 +7,7 @@ $ENV ccache -o cache_dir=/build/cache &&\
 cd $DIRECTORY
 
 # Empty output directory
-rm -rf $OUTPUT/*
+rm -rf $OUTPUT/packages $OUTPUT/targets
 
 # ---------------------------------------------------------------
 # Step 1: build spin daemon and kernel module.
