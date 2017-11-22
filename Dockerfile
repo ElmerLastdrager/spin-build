@@ -29,7 +29,7 @@ USER dev
 
 # Build SPIN
 # TODO REMOVE
-CMD ["/bin/scripts/build-release.sh"]
+CMD ["/build/scripts/build-release.sh"]
 
 # Use ENTRYPOINT to allow dynamic commands to run
 # Default: build all

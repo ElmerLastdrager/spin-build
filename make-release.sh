@@ -41,7 +41,7 @@ else
         }
     else
         time {
-            $ENV docker build . -t spinbuild && docker run
+            $ENV docker build . -t spinbuild && docker run \
                 -v "$(pwd)"/bin:$OUTPUT/sidn \
                 --rm -it \
                 spinbuild \
