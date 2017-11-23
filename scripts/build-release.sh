@@ -1,6 +1,10 @@
 #!/bin/bash
 
-source $(dirname $BASH_SOURCE)/../config-release.sh
+# Move configuration file in-place, to configure the other scripts.
+mv $(dirname $BASH_SOURCE)/../config-release.sh \
+   $(dirname $BASH_SOURCE)/../config.sh
+
+source $(dirname $BASH_SOURCE)/../config.sh
 
 $ENV ccache -o cache_dir=/build/cache &&\
 
@@ -43,3 +47,4 @@ $ENV python2.7 $DIRECTORY/scripts/lede-sidn-create_release.py -v $VERSION \
     $LEDEDIR/VALIBOX_CHANGELOG.txt $OUTPUT/sidn
 
 rm -rf $OUTPUT/packages $OUTPUT/targets
+

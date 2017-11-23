@@ -10,14 +10,13 @@ resetworkdir () {
     mkdir -p $LEDEDIR/files/etc &&\
     echo "$VERSION" > $LEDEDIR/files/etc/valibox.version &&\
     # make sure the .config file is up to date
-    $ENV make defconfig &&\
-    $ENV make oldconfig
+    $ENV make defconfig
 }
 
 # Source general configuration
-source $(dirname $BASH_SOURCE)/../config-release.sh
+source $(dirname $BASH_SOURCE)/../config.sh
 
-echo "Configuring build environment"
+echo "Configuring build environment ($TYPE)"
 
 cd $LEDEDIR &&\
 
@@ -28,12 +27,13 @@ $ENV git reset --hard $LEDE_COMMIT &&\
 
 # Set feeds and SIDN valibox package
 cat $LEDEDIR/feeds.conf.default > $LEDEDIR/feeds.conf &&\
-cat $DIRECTORY/devices/feeds-release.conf >> $LEDEDIR/feeds.conf &&\
+cat $DIRECTORY/devices/feeds-$TYPE.conf >> $LEDEDIR/feeds.conf &&\
 cp $DIRECTORY/changelog.txt $LEDEDIR/VALIBOX_CHANGELOG.txt &&\
 
-rm -f $LEDEDIR/dl/spin-0.*.tar.gz &&\
+rm -f $LEDEDIR/dl/spin-*.tar.gz &&\
 $LEDEDIR/scripts/feeds update -a &&\
-$LEDEDIR/scripts/feeds install -p sidn spin
+$LEDEDIR/scripts/feeds install -a -p sidn
+# FIXME in beta, install all except spin. Or update spin later
 
 # ---------------------------------------------------------------
 # Compile for GL Inet AR150
@@ -42,20 +42,17 @@ $LEDEDIR/scripts/feeds install -p sidn spin
 # Check out specific commit of LEDE, for this version
 echo "Now compiling for GL Inet AR150"
 resetworkdir gl-ar150
-make
-
+make -j
 $ENV rsync -r $LEDEDIR/bin/ $OUTPUT
 
 echo "Now compiling for GL Inet 6416"
 resetworkdir gl-6416
-make
-
+make -j
 $ENV rsync -r $LEDEDIR/bin/ $OUTPUT
 
 echo "Now compiling for GL Inet MT300a"
 resetworkdir gl-mt300a
-make
-
+make -j
 $ENV rsync -r $LEDEDIR/bin/ $OUTPUT
 
 # If all goes okay, the results will all be in the $LEDEDIR/bin/ dir

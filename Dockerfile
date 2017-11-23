@@ -14,7 +14,7 @@ RUN apt-get update && apt-get install -y \
     build-essential autoconf \
     libnfnetlink-dev libnfnetlink0 \
     libmosquitto-dev luarocks \
-    git nano \
+    git nano curl \
     luarocks mosquitto lua-bitop lua-posix \
     libncurses5-dev zlib1g-dev gawk python2.7-dev \ 
     ccache
