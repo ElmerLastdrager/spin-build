@@ -52,7 +52,8 @@ $ENV rsync -r $LEDEDIR/bin/ $OUTPUT
 
 echo "Now compiling for GL Inet MT300a"
 resetworkdir gl-mt300a
-make -j
+# For whatever reason, the mt300a target gives errors on make -j
+make -j1
 $ENV rsync -r $LEDEDIR/bin/ $OUTPUT
 
 # If all goes okay, the results will all be in the $LEDEDIR/bin/ dir
