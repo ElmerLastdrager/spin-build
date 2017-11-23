@@ -33,7 +33,7 @@ rm -rf $OUTPUT/packages $OUTPUT/targets
 # Alternative: clone entire repository
 echo "Obtaining LEDE source"
 if [ ! -d "$LEDEDIR/.git" ]; then
-    $ENV git clone https://github.com/lede-project/source.git $LEDEDIR
+    $ENV git clone --quiet https://github.com/lede-project/source.git $LEDEDIR
 else
     cd $LEDEDIR
     $ENV git pull
