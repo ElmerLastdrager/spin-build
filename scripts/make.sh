@@ -47,9 +47,7 @@ if [ "$2" = "cache" ]; then
             -v $LCACHE:$LEDEDIR -v "$(pwd)"/bin:$OUTPUT/sidn \
             --rm -it \
             spinbuild \
-            /bin/bash
-            # $DIRECTORY/scripts/build-$BUILD_VERSION.sh
-        echo "ALERT: BUGGED VERSION OF SCRIPT " # FIXME FIXME FIXME
+            $DIRECTORY/scripts/build-$BUILD_VERSION.sh
     }
 else
     time {
@@ -57,9 +55,7 @@ else
             -v "$(pwd)"/bin:$OUTPUT/sidn \
             --rm -it \
             spinbuild \
-            /bin/bash
-            # $DIRECTORY/scripts/build-$BUILD_VERSION.sh
-        echo "ALERT: BUGGED VERSION OF SCRIPT " # FIXME FIXME FIXME
+            $DIRECTORY/scripts/build-$BUILD_VERSION.sh
     }
 fi
 echo "The output can be found in the bin/ directory"
