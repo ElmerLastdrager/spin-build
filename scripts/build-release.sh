@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Move configuration file in-place, to configure the other scripts.
-mv $(dirname $BASH_SOURCE)/../config-release.sh \
+cp $(dirname $BASH_SOURCE)/../config-release.sh \
    $(dirname $BASH_SOURCE)/../config.sh
 
 source $(dirname $BASH_SOURCE)/../config.sh
