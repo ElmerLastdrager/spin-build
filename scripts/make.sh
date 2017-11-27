@@ -44,7 +44,8 @@ if [ "$2" = "cache" ]; then
     time {
         $ENV docker build . -t spinbuild && docker run \
             -v $CCACHE:$DIRECTORY/cache \
-            -v $LCACHE:$LEDEDIR -v "$(pwd)"/bin:$OUTPUT/sidn \
+            -v $LCACHE:$LEDEDIR \
+            -v "$(pwd)"/bin:$OUTPUT/sidn \
             --rm -it \
             spinbuild \
             $DIRECTORY/scripts/build-$BUILD_VERSION.sh
