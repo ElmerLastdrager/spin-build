@@ -37,12 +37,15 @@ else
 fi
 
 echo "Building SPIN ($BUILD_VERSION) $VERSION to bin/"
-# Make sure bin/ directory is removed. Docker will create it.
+# Make sure bin/ directory is removed.
 $ENV rm -rf bin/
+# Recreate directory
+$ENV mkdir -p bin/
 
 if [ "$2" = "cache" ]; then
     time {
-        $ENV docker build . -t spinbuild && docker run \
+        $ENV docker build . -t spinbuild &&\
+            docker run \
             -v $CCACHE:$DIRECTORY/cache \
             -v $LCACHE:$LEDEDIR \
             -v "$(pwd)"/bin:$OUTPUT/sidn \
@@ -52,11 +55,15 @@ if [ "$2" = "cache" ]; then
     }
 else
     time {
-        $ENV docker build . -t spinbuild && docker run \
+        $ENV docker build . -t spinbuild &&\
+            docker run \
             -v "$(pwd)"/bin:$OUTPUT/sidn \
             --rm -it \
             spinbuild \
             $DIRECTORY/scripts/build-$BUILD_VERSION.sh
     }
 fi
+# Set permissions to current user
+$ENV chown -R $(id -u) bin/
+
 echo "The output can be found in the bin/ directory"
