@@ -48,10 +48,7 @@ cp -r * /tmp/${BNAME}/ &&\
     $ENV make distclean && rm -rf lua/tests && rm -rf src/tests) &&\
 (cd /tmp; tar -czvf ${BNAME}.tar.gz ${BNAME}) &&\
 rm -rf /tmp/${BNAME} &&\
-$ENV md5sum /tmp/${BNAME}.tar.gz > /tmp/hash
-
-# FIXME eerst md5sum, maar later omvormen tot sha256sum
-# FIXME Jelte moet eerst spin_pkgs omschrijven naar PKG_HASH
+$ENV shasum -a 256 /tmp/${BNAME}.tar.gz > /tmp/hash
 
 HASHRAW=`cat /tmp/hash`
 HASHARR=($HASHRAW)
@@ -83,7 +80,7 @@ else
 fi
 
 # Insert correct HASH into Makefile
-$ENV sed "/^PKG_MD5SUM/s/.*/PKG_MD5SUM:=$HASH/" $SIDNSRC/spin/Makefile \
+$ENV sed "/^PKG_HASH/s/.*/PKG_HASH:=$HASH/" $SIDNSRC/spin/Makefile \
     > $SIDNSRC/spin/Makefile.new &&\
 cp $SIDNSRC/spin/Makefile.new $SIDNSRC/spin/Makefile &&\
 
