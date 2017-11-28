@@ -41,12 +41,12 @@ $LEDEDIR/scripts/feeds install -a -p sidn
 # Check out specific commit of LEDE, for this version
 echo "Now compiling for GL Inet AR150"
 resetworkdir gl-ar150
-$ENV make -j
+$ENV make -j1
 $ENV rsync -r $LEDEDIR/bin/ $OUTPUT
 
 echo "Now compiling for GL Inet 6416"
 resetworkdir gl-6416
-$ENV make -j
+$ENV make -j1
 $ENV rsync -r $LEDEDIR/bin/ $OUTPUT
 
 echo "Now compiling for GL Inet MT300a"
