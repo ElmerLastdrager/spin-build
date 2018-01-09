@@ -5,6 +5,8 @@ software.
 
 Clone this repository and run the make-release.sh scripts using bash.
 
+These scripts allow you to build either the latest release version of SPIN, or the current beta version based on the project's master branch.
+
 ## Usage
 
 The easiest method to start compiling SPIN is to run:
@@ -19,6 +21,10 @@ If you want to remove the cached volumes, you can run
 
 The output images will be put in a bin/ subdirectory of the current working
  directory.
+
+Similarly, you can replace release with beta for all the above commands.
+For example,
+> ./scripts/make.sh beta
 
 <!-- ## Contents
 
