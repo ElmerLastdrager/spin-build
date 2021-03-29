@@ -1,66 +1,17 @@
-# SPIN build scripts
+# Building Valibox/SPIN for OpenWRT
 
 This repository contains the build scripts to build and publish the SPIN
-software.
+software for OpenWRT.
 
-Clone this repository and run the make-release.sh scripts using bash.
+Clone this repository, initiate the submodule, build the environment and compile.
 
 These scripts allow you to build either the latest release version of SPIN, or the current beta version based on the project's master branch.
 
-## Usage
+## Clone
 
-The easiest method to start compiling SPIN is to run:
-> ./scripts/make.sh release
+## Configure
 
-This does not use caching by default. If you want to compile multiple times
-and have some disk space to spare (8-10GB), use
-> ./scripts/make.sh release cache
+## Build and compile
 
-If you want to remove the cached volumes, you can run
-> ./scripts/make.sh release clean
+## Extract results
 
-The output images will be put in a bin/ subdirectory of the current working
- directory.
-
-Similarly, you can replace release with beta for all the above commands.
-For example,
-> ./scripts/make.sh beta
-
-<!-- ## Contents
-
-**scripts/**
-    build scripts for lede, spin, etc
-    main entrance script for docker cmd
-
-**Dockerfile**
-
- **README**
-    Write command examples -->
-
-<!-- **make-beta.sh**
-   Script that builds all beta binaries in `bin/beta/` directory.
-   Runs docker with specific bin/ bind mount. -->
-
-<!-- **make-release.sh**
-   Script that builds all release binaries in `bin/` directory.
-   Runs docker with specific bin/ bind mount.  -->
-
-<!-- **.gitignore**
-    bin/ -->
-
-<!-- # Manual
-
-Handmatig builden bij beta-builds, met volumes en feed-link. Korte uitleg hoe
- dat moet.
-
-Building release:
-> docker build . -t spinbuild && docker run -v ccache:/build/cache -v ledesrc:/build/lede-source -v "$(pwd)"/bin:/build/output/sidn --rm -it spinbuild /build/build-release.sh
-
-
-# Test
-To log in to the image and manually run build commands, use the following
- command.
-
-> docker build . -t spinbuild && docker run -v ccache:/build/cache -v ledesrc:/build/lede-source -v "$(pwd)"/output:/build/output/sidn --rm -it spinbuild /bin/bash
-
- -->
