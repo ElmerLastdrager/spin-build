@@ -30,7 +30,7 @@ WORKDIR /build
 ARG DEBIAN_FRONTEND=noninteractive
 
 # Allow unsafe compilation as root (should not be needed anymore?)
-ARG FORCE_UNSAFE_CONFIGURE=1
+#ARG FORCE_UNSAFE_CONFIGURE=1
 
 # Install all requirements for building SPIN
 RUN apt-get update && apt-get install -y \
