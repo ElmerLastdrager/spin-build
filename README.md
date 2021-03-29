@@ -6,7 +6,7 @@ The output will be an OpenWRT image that you can upload on a compatible device.
 
 Clone this repository, initiate the submodule, build the environment and compile, e.g.:
 
-    git clone --recursive-submodules https://github.com/ElmerLastdrager/spin-build
+    git clone --recurse-submodules https://github.com/ElmerLastdrager/spin-build
 
 These scripts allow you to build your own beta version based on the project's master branch.
 
