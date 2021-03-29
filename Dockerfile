@@ -66,9 +66,6 @@ USER app
 # Copy valibox build config
 RUN cp /build/valibox_build_config /build/valibox-spin-builder/.valibox_build_config
 
-# Update valibox-spin-builder
-RUN cd /build/valibox-spin-builder && /usr/bin/git pull
-
 # Clone OpenWRT into directory and build images
 RUN cd /build/valibox-spin-builder && ./builder.py -b
 
