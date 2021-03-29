@@ -1,0 +1,26 @@
+[main]
+
+[OpenWRT]
+update_git = True
+source_branch = v19.07.7
+target_device = gl-ar150
+update_all_feeds = True
+make_arguments = -j8
+
+[sidn_openwrt_pkgs]
+update_git = True
+source_branch = development
+
+[SPIN]
+local = True
+update_git = True
+version = 0.13
+source_branch = master
+
+[Release]
+create_release = True
+version_string = 1.11-bridge
+changelog_file =
+target_directory = valibox_release
+beta = True
+file_suffix =

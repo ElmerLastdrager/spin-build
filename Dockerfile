@@ -1,35 +1,79 @@
-# SPIN build Dockerfile
+# SPIN builderfile for Dockerfile
 # This produces a docker container that allows you to build SPIN software
-#   and/or images based on LEDE.
+#   and/or images based on OpenWRT.
+#
+# Requirements:
+# - Docker
+# - Diskspace (at least 26GB at the time of writing)
+#
+#  
+# Build: docker build -t spin .
+# Inspect: docker run -it --rm spin
+#
+# Copy work-files: docker cp spindata.c spinbuilder:/build/build/spin/src/spind/spindata.c 
+#
+# Copy final images, for example:
+# docker create --name spinbuilder spin
+#       Or, interactive: docker run -it --name spinbuilder spin /bin/bash 
+# docker cp spinbuilder:/build/valibox-spin-builder/valibox_release ./
+# docker rm spinbuilder
+# 
 
-# Use an official Ubuntu stable release
-FROM ubuntu:latest
+
+# Use an official Debian stable release
+FROM debian:latest
 
 # Set the working directory to /app
 WORKDIR /build
 
+# Grub may fuck up things, tell it to shut up
+ARG DEBIAN_FRONTEND=noninteractive
+
+# Allow unsafe compilation as root (should not be needed anymore?)
+ARG FORCE_UNSAFE_CONFIGURE=1
+
 # Install all requirements for building SPIN
 RUN apt-get update && apt-get install -y \
-    linux-generic linux-headers-generic \
-    build-essential autoconf \
+    build-essential gcc make autoconf \
     libnfnetlink-dev libnfnetlink0 \
     libmosquitto-dev luarocks \
-    git nano curl \
+    git nano curl time \
     luarocks mosquitto lua-bitop lua-posix \
     libncurses5-dev zlib1g-dev gawk python2.7-dev \ 
-    ccache
+    ccache libmnl-dev \ 
+    libnetfilter-queue-dev libmnl0 \
+    libnetfilter-log-dev libnetfilter-log1 \
+    libnetfilter-conntrack-dev libldns-dev \
+    libnetfilter-queue1 \
+    # Extra feeds for openwrt
+    libssl-dev libncurses5-dev unzip gawk zlib1g-dev \
+    # For packages that are not installed through git
+    subversion mercurial \
+    # Extra packages, OpenWRT was complaining
+    libpam-dev libcap-dev libjansson-dev \
+    # python3 for valibox-builder scripts
+    python3
 
 # Add build scripts and files to image
 ADD . /build/
 
-RUN useradd -ms /bin/bash dev &&\
-    /build/scripts/init.sh
+# Run as user (non root)
+RUN groupadd -r app -g 1000 && useradd -u 1000 -r -g app -m -d /app -s /sbin/nologin -c "App user" app && \
+    chmod 755 /app && chown -R app:app /build
+# Specify the user to execute all commands below
+USER app
 
-USER dev
+# Copy valibox build config
+RUN cp /build/valibox_build_config /build/valibox-spin-builder/.valibox_build_config
 
-# Build SPIN
-# TODO REMOVE
-CMD ["/build/scripts/build-release.sh"]
+# Update valibox-spin-builder
+RUN cd /build/valibox-spin-builder && /usr/bin/git pull
+
+# Clone OpenWRT into directory and build images
+RUN cd /build/valibox-spin-builder && ./builder.py -b
+
+CMD ["/bin/bash"]
 
 # Use ENTRYPOINT to allow dynamic commands to run
 # Default: build all
+

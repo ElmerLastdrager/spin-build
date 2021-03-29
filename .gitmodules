@@ -1,0 +1,3 @@
+[submodule "valibox-spin-builder"]
+	path = valibox-spin-builder
+	url = https://github.com/SIDN/valibox-spin-builder
