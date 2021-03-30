@@ -12,14 +12,14 @@ update_git = True
 source_branch = development
 
 [SPIN]
-local = True
+local = False
 update_git = True
 version = 0.13
 source_branch = master
 
 [Release]
 create_release = True
-version_string = 1.11-bridge
+version_string = 1.11
 changelog_file =
 target_directory = valibox_release
 beta = True
