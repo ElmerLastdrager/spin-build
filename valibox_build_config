@@ -5,7 +5,7 @@ update_git = True
 source_branch = v19.07.7
 target_device = gl-ar150
 update_all_feeds = True
-make_arguments = -j8
+make_arguments = -j2
 
 [sidn_openwrt_pkgs]
 update_git = True

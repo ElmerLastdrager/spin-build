@@ -7,18 +7,16 @@
 # - Diskspace (at least 26GB at the time of writing)
 #
 #  
-# Build: docker build -t spin .
-# Inspect: docker run -it --rm spin
+# Build: docker build -t spinbuildenv .
 #
 # Copy work-files: docker cp spindata.c spinbuilder:/build/build/spin/src/spind/spindata.c 
 #
 # Copy final images, for example:
-# docker create --name spinbuilder spin
-#       Or, interactive: docker run -it --name spinbuilder spin /bin/bash 
-# docker cp spinbuilder:/build/valibox-spin-builder/valibox_release ./
+# docker create --name spintmp spinbuildenv
+#       Or, interactive: docker run -it --name spintmp spinbuildenv /bin/bash 
+# docker cp spintmp:/build/valibox-spin-builder/valibox_release ./
 # docker rm spinbuilder
 # 
-
 
 # Use an official Debian stable release
 FROM debian:latest

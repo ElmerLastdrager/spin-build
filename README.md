@@ -15,12 +15,18 @@ The repository comes pre-configured for a GL.Inet AR150 mini router.
 If you want to build SPIN for an OS other than OpenWRT, you may want to browse to [the Valibox builder repository](https://github.com/SIDN/valibox-spin-builder) instead.
 Additionally, that is also the place where you can read about the configuration options of the valibox\_build\_options file.
 
+Specifically, you may want to tune the make_argumnents (make the number behind -j match the number of cores on your device).
+
 ## Build and compile
 Assuming you've got Docker installed and have plenty of available disk space (+- 26 GiB will do), you may run the following command to construct a Docker image with the build environment and compile an Valibox image with SPIN:
 
     docker build -t spinbuildenv .
 
 _(this may take a long time)_
+
+When pulling for changes, make sure to include the submodule (most changes will be there):
+
+    git pull --recurse-submodules
 
 ## Extract results
 Once the image has been build, you can extract the output by first creating a temporary container:
