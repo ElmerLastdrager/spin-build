@@ -15,7 +15,7 @@
 # docker create --name spintmp spinbuildenv
 #       Or, interactive: docker run -it --name spintmp spinbuildenv /bin/bash 
 # docker cp spintmp:/build/valibox-spin-builder/valibox_release ./
-# docker rm spinbuilder
+# docker rm spintmp
 # 
 
 # Use an official Debian stable release
